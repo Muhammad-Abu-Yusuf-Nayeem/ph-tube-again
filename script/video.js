@@ -1,3 +1,15 @@
+function getTimeString(time){
+    const day = parseInt( time / (3600*24));
+    time = time % (3600*24);
+    const hour = parseInt( time / (3600));
+    time = time % (3600);
+    const min = parseInt( time / (60));
+    time = time % (60);
+    const sec = time;
+
+    return `${day}d ${hour}h ${min}m ${sec}s ago`;
+}
+
 // 1 - fetch, load and show categories on html
 
 // create loadCategories
@@ -34,9 +46,13 @@ const displayVideos = (videos) => {
       src=${video.thumbnail}
       class= "h-full w-full object-cover"
       alt="Shoes" />
-      <span class="absolute right-2 bottom-2 bg-black text-white rounded p-1">${
-        video.others.posted_date
-      }</span>
+       <!-- optional chaining operator '?.' -->
+      ${
+        video.others.posted_date?.length == 0
+          ? ""
+          : `<span class="absolute right-2 bottom-2 bg-black text-white rounded p-1">${getTimeString(video.others.posted_date)}</span>`
+      }
+      
   </figure>
   <div class="px-0 py-2 flex gap-2">
     <div>
