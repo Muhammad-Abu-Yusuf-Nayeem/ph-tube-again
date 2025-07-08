@@ -39,7 +39,7 @@
                 <path d="m21 21-4.3-4.3"></path>
               </g>
             </svg>
-            <input type="search" required placeholder="Search" />
+            <input id="search-input" type="search" required placeholder="Search" />
           </label>
         </div>
         <div class="sort"><button class="btn">Sort</button></div>
@@ -54,12 +54,16 @@
       ></section>
     </main>
     <!--- modal using by id -->>
-    <button id="showModalData" class="btn hidden" onclick="my_modal_1.showModal()">open modal</button>
-    <dialog id="my_modal_1" class="modal">
+    <button
+      id="showModalData"
+      class="btn hidden"
+      onclick="my_modal_1.showModal()"
+    >
+      open modal
+    </button>
+    <dialog id="customModal" class="modal">
       <div class="modal-box">
-        <div id="modal-content">
-
-        </div>
+        <div id="modal-content"></div>
         <h3 class="text-lg font-bold">Hello!</h3>
         <p class="py-4">Press ESC key or click the button below to close</p>
         <div class="modal-action">
