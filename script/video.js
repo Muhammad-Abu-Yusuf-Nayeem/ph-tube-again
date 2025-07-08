@@ -13,7 +13,7 @@ function getTimeString(time) {
 const removeActiveClass = () => {
   const buttons = document.getElementsByClassName("category-btn");
   console.log(buttons);
-  for(let btn of buttons){
+  for (let btn of buttons) {
     btn.classList.remove("active");
   }
 };
@@ -28,6 +28,18 @@ const loadCategories = () => {
     .then((res) => res.json())
     .then((data) => displayCategories(data.categories))
     .catch((error) => console.log(error));
+};
+const loadDetails = async (videoId) => {
+  console.log(videoId);
+  const uri = `https://openapi.programming-hero.com/api/phero-tube/video/${videoId}`;
+  const res = await fetch(uri);
+  const data = await res.json();
+  displayDetails(data.video);
+};
+const displayDetails = (video) => {
+  const detailContainer = document.getElementById("modal-content");
+
+  document.getElementById("showModalData").click();
 };
 
 //loadVideos
@@ -109,6 +121,9 @@ const displayVideos = (videos) => {
         : ""
     }
   </div>
+    <p><button onclick="loadDetails('${
+      video.video_id
+    }')" class="btn btn-sm btn-error">Details</button></p>
   </div>
   </div>
     `;
